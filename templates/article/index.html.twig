@@ -20,7 +20,7 @@
                 <td>{{ article.libelle }}</td>
                 <td>{{ article.titre }}</td>
                 <td>{{ article.date ? article.date|date('Y-m-d') : '' }}</td>
-                <td>{{ article.Categorie}}</td>
+                <td>{{ article.UneCategorie}}</td>
                 <td>{{ article.Auteur}}</td>
                 <td>
                     <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>

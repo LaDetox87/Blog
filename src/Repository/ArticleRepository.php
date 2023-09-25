@@ -21,6 +21,29 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    public function findByCategorie($categorie): array
+    {
+        return $this->createQueryBuilder('a')
+            ->join('a.UneCategorie', 'c')
+            ->andWhere('c.id = :val')
+            ->setParameter('val', $categorie)
+            ->orderBy('a.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findlast3articles(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->setParameter('val', $categorie)
+            ->orderBy('a.date', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */

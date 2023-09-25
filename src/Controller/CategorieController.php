@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Controller;
-
 use App\Entity\Categorie;
 use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
@@ -22,6 +20,7 @@ class CategorieController extends AbstractController
         ]);
     }
 
+    #[Route('/listing', name: 'listingcategories', methods:['GET'])]
     public function listingcategories(CategorieRepository $categorieRepository): Response
     {
         return $this->render('categorie/listingcategorie.html.twig', [

@@ -1,5 +1,5 @@
 {% for categorie in categories %}
-    <a href="{{path('app_categorie')}}" class="dropdown-item">
+    <a href="{{path('app_article_par_categorie', {'id': categorie.id })}}" class="dropdown-item">
         {{ categorie.libelle }}
     </a> 
 {% endfor %}

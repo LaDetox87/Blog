@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class IndexControllerPhpController extends AbstractController
 {
-    #[Route('/', name: 'blog')]
+    #[Route('/', name: 'accueil')]
     public function index(): Response
     {
-        return $this->render('blog.html.twig', [
+        return $this->render('accueil.html.twig', [
             'controller_name' => 'IndexControllerPhpController',
         ]);
     }
