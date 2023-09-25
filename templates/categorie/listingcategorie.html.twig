@@ -1,0 +1,5 @@
+{% for categorie in categories %}
+    <a href="{{path('app_categorie')}}" class="dropdown-item">
+        {{ categorie.libelle }}
+    </a> 
+{% endfor %}
