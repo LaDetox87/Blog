@@ -22,6 +22,12 @@ class ArticleController extends AbstractController
             'articles' => $articleRepository->findAll(),
         ]);
     }
+    public function troisarticles(ArticleRepository $articleRepository): Response
+    {
+        return $this->render('article/3_articles.html.twig', [
+            'articles' => $articleRepository->findlast3articles(),
+        ]);
+    }
 
     #[Route('/{id}/categorie', name: 'app_article_par_categorie', methods:['GET'])]
     public function listingarticles(ArticleRepository $ArticleRepository, Categorie $categorie): Response

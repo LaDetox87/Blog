@@ -36,7 +36,6 @@ class ArticleRepository extends ServiceEntityRepository
     public function findlast3articles(): array
     {
         return $this->createQueryBuilder('a')
-            ->setParameter('val', $categorie)
             ->orderBy('a.date', 'DESC')
             ->setMaxResults(3)
             ->getQuery()
