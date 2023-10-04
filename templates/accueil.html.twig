@@ -47,11 +47,7 @@
 
 <!-- Header Start -->
 
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-  {% include 'HeaderConnected.html.twig' %}
-{% else %}
-  {% include 'HeaderNotConnected.html.twig' %}
-{% endif %}
+  {% include 'Header.html.twig' %}
 
 <!-- Slider Start -->
 <section class="slider">

@@ -31,6 +31,9 @@ class Article
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $UneCategorie = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $lienimage = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -98,5 +101,17 @@ class Article
 
     public function __toString(){
         return $this->titre;
+    }
+
+    public function getLienimage(): ?string
+    {
+        return $this->lienimage;
+    }
+
+    public function setLienimage(?string $lienimage): static
+    {
+        $this->lienimage = $lienimage;
+
+        return $this;
     }
 }

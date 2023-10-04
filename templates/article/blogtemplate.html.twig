@@ -45,11 +45,7 @@
 <body id="body">
 
 <!-- Header Start -->
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-  {% include 'HeaderConnected.html.twig' %}
-{% else %}
-  {% include 'HeaderNotConnected.html.twig' %}
-{% endif %}
+{% include 'Header.html.twig' %}
 
 <section class="page-title bg-2">
   <div class="container">

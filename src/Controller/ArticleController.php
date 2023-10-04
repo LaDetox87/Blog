@@ -29,6 +29,14 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    #[Route('/articleabout/?keyword={word}/', name: 'app_article_about', methods:['GET'])]
+    public function articleabout(ArticleRepository $articleRepository, String $word): Response
+    {
+        return $this->render('article/articleabout.html.twig', [
+            'articles' => $articleRepository->findarticleabout($word),
+        ]);
+    }
+
     #[Route('/{id}/categorie', name: 'app_article_par_categorie', methods:['GET'])]
     public function listingarticles(ArticleRepository $ArticleRepository, Categorie $categorie): Response
     {

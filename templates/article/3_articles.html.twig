@@ -3,7 +3,7 @@
         <i class="ion-quote"></i>
         <p> {{ article.libelle }} "</p>
         <div class="user">
-        <img src="images/item-img1.jpg" alt="Pepole">
+        <img src={{article.lienimage ? article.lienimage : "" }} alt="photo de l'article">
         <p><span> {{ article.auteur }} </span> {{ article.titre }} </p>
         </div>
     </div>

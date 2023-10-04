@@ -24,9 +24,9 @@ class ArticleRepository extends ServiceEntityRepository
     public function findByCategorie($categorie): array
     {
         return $this->createQueryBuilder('a')
+            ->setParameter('val', $categorie)
             ->join('a.UneCategorie', 'c')
             ->andWhere('c.id = :val')
-            ->setParameter('val', $categorie)
             ->orderBy('a.id', 'DESC')
             ->getQuery()
             ->getResult()
@@ -43,28 +43,13 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
 
-//    /**
-//     * @return Article[] Returns an array of Article objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Article
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findarticleabout(string $word): array
+    {
+        return $this->createQueryBuilder('a')
+            ->setParameter('word', "%".$word."%")
+            ->andWhere("a.titre like :word OR a.libelle like :word")
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
