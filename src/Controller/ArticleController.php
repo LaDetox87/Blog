@@ -29,9 +29,11 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/articleabout/?keyword={word}/', name: 'app_article_about', methods:['GET'])]
-    public function articleabout(ArticleRepository $articleRepository, String $word): Response
+    #[Route('/articleabout/', name: 'app_article_about', methods:['GET', 'POST'])]
+    public function articleabout(ArticleRepository $articleRepository, Request $request): Response
     {
+        $word = ($request->get('keyword'));
+       
         return $this->render('article/articleabout.html.twig', [
             'articles' => $articleRepository->findarticleabout($word),
         ]);
@@ -65,7 +67,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_article_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_article_show', methods: ['GET'])]
     public function show(Article $article): Response
     {
         return $this->render('article/show.html.twig', [

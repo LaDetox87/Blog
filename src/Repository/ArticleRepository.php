@@ -45,11 +45,15 @@ class ArticleRepository extends ServiceEntityRepository
 
     public function findarticleabout(string $word): array
     {
-        return $this->createQueryBuilder('a')
+        $requete =  $this->createQueryBuilder('a')
             ->setParameter('word', "%".$word."%")
-            ->andWhere("a.titre like :word OR a.libelle like :word")
+            ->join('a.auteur','u')
+            ->where("a.titre like :word")
+            ->orwhere("a.libelle like :word")
+            ->orwhere("u.pseudo like :word")
             ->getQuery()
             ->getResult()
         ;
+        return $requete;
     }
 }
