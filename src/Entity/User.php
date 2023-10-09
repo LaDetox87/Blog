@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
@@ -22,6 +24,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private array $roles = [];
+
+    #[ORM\OneToMany(mappedBy: 'auteur', targetEntity: Article::class)]
+    private Collection $LesArticles;
+
+    public function __construct()
+    {
+        $this->LesArticles = new ArrayCollection();
+    }
 
     /**
      * @var string The hashed password
@@ -47,6 +57,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->username = $username;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getLesArticles(): Collection
+    {
+        return $this->LesArticles;
+    }
+
+    public function addLesArticle(Article $lesArticle): static
+    {
+        if (!$this->LesArticles->contains($lesArticle)) {
+            $this->LesArticles->add($lesArticle);
+            $lesArticle->setAuteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLesArticle(Article $lesArticle): static
+    {
+        if ($this->LesArticles->removeElement($lesArticle)) {
+            // set the owning side to null (unless already changed)
+            if ($lesArticle->getAuteur() === $this) {
+                $lesArticle->setAuteur(null);
+            }
+        }
+
+        return $this;
+    }
+    
+    public function __toString(){
+        return $this->username;
     }
 
     /**

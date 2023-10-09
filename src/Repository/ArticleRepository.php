@@ -50,7 +50,7 @@ class ArticleRepository extends ServiceEntityRepository
             ->join('a.auteur','u')
             ->where("a.titre like :word")
             ->orwhere("a.libelle like :word")
-            ->orwhere("u.pseudo like :word")
+            ->orwhere("u.username like :word")
             ->getQuery()
             ->getResult()
         ;

@@ -11,6 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 #[Route('/article')]
 class ArticleController extends AbstractController
@@ -28,11 +30,32 @@ class ArticleController extends AbstractController
             'articles' => $articleRepository->findlast3articles(),
         ]);
     }
+    #[Route('/article/select', name: 'recherche')]
+    public function RechercherArticle(ArticleRepository $ArticleRepository): Response
+    {
+        $form = $this->createFormBuilder(null, [
+            'attr' => ['class' => 'd-flex']
+        ])
+        ->setAction($this->generateUrl('app_article_about'))
+        ->add('elt', TextType::class, ['label' => false,
+        'attr' => ['Placeholder' => 'Rechercher',
+        'class' => 'form-control me-2'
+        ]])
+        ->add('submit', SubmitType::class, [
+            'attr' => ['class' => 'btn btn-outline-success']
+        ])
+        ->setMethod('GET')
+        ->getForm();
+        return $this->render('article/rechercher.html.twig', [
+            'form' =>$form->createview()
+        ]);
+    }
 
-    #[Route('/articleabout/', name: 'app_article_about', methods:['GET', 'POST'])]
+    #[Route('/articleabout', name: 'app_article_about', methods:['GET', 'POST'])]
     public function articleabout(ArticleRepository $articleRepository, Request $request): Response
     {
-        $word = ($request->get('keyword'));
+        $form = ($request->get('form'));
+        $word = $form['elt'];
        
         return $this->render('article/blogtemplate.html.twig', [
             'articles' => $articleRepository->findarticleabout($word),
