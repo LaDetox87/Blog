@@ -51,38 +51,27 @@
   </div>
 </section>
 
-{% for article in articles %}
+{% for categorie in categories %}
   <div class="post">
     <div class="post-media post-thumb">
       <a href="blog-single.html">
         <img src="images/blog/blog-post-2.jpg" alt="">
       </a>
     </div>
-    <h3 class="post-title"><a href="blog-single.html">{{article.titre}}</a></h3>
     <div class="post-meta">
       <ul>
         <li>
-          <i class="ion-calendar"></i> {{article.date|date('Y-m-d')}}
-        </li>
-        <li>
-        <li>
           <a href="blog-grid.html"><i class="ion-pricetags"></i> LIFESTYLE</a>,<a href="blog-left-sidebar.html"> TRAVEL</a>, <a href="blog-right-sidebar.html">FASHION</a>
         </li>
-
       </ul>
     </div>
     <div class="post-content">
-      <p>{{article.libelle}}</p>
-      <p>{{article.UneCategorie}}</p>
-      <p>{{article.Auteur}}</p>
-      <a href="blog-single.html" class="btn btn-main">Continue Reading</a>
+      <p style="font-weight: bold;">{{ categorie.libelle }}</p>
     </div>
   </div>
   <td>
-    <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
+    <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">edit</a>
   </td>
-{% else %}
 {% endfor %}
 <nav aria-label="Page navigation example">
   <ul class="pagination post-pagination">

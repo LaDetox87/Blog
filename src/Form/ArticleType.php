@@ -6,13 +6,18 @@ use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class ArticleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('libelle')
+            ->add('libelle',CKEditorType::class, [
+
+                'config_name' => 'my_custom_config',
+
+            ])
             ->add('titre')
             ->add('date')
             ->add('auteur')

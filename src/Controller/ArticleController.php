@@ -34,7 +34,7 @@ class ArticleController extends AbstractController
     {
         $word = ($request->get('keyword'));
        
-        return $this->render('article/articleabout.html.twig', [
+        return $this->render('article/blogtemplate.html.twig', [
             'articles' => $articleRepository->findarticleabout($word),
         ]);
     }
@@ -42,7 +42,7 @@ class ArticleController extends AbstractController
     #[Route('/{id}/categorie', name: 'app_article_par_categorie', methods:['GET'])]
     public function listingarticles(ArticleRepository $ArticleRepository, Categorie $categorie): Response
     {
-        return $this->render('article/index.html.twig', [
+        return $this->render('article/blogtemplate.html.twig', [
             'articles' => $ArticleRepository->findByCategorie($categorie),
         ]);
     }
