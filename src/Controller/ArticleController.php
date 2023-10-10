@@ -62,7 +62,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/categorie', name: 'app_article_par_categorie', methods:['GET'])]
+    #[Route('/{slug}/categorie', name: 'app_article_par_categorie', methods:['GET'])]
     public function listingarticles(ArticleRepository $ArticleRepository, Categorie $categorie): Response
     {
         return $this->render('article/blogtemplate.html.twig', [
