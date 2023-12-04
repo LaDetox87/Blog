@@ -105,7 +105,7 @@ Vagrant ssh
 
 => Aller sur l'url IpVM et vous devez avoir ma page
 ```sh
-if("c'est bon" === True){
+if("tp réussi"){
     return 'super trop cool';
 }else{
     return 'venez me voir sans en parler à MR.MERY sinon il va me crier dessus';
