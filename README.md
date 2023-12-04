@@ -12,7 +12,6 @@ Ouvrer le port 80 pour que le serveur web soit accessible.
 sudo apt update
 sudo apt install apache2 (Y)
 sudo systemctl status apache2 (vérifier si Active : active (running))
-</code>
 ```
 
 **Installer PHP**
@@ -61,7 +60,7 @@ sudo mv composer.phar /usr/local/bin/composer
 
 (dans le dossier Blog récupéré sur github)
 
-```
+```sh
 composer install (pour récupérer tous les packages)
 ```
 
